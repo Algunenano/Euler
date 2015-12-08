@@ -17,7 +17,12 @@ protected:
 
 };
 
-TEST_F(Euler3Spec, fail)
+TEST_F(Euler3Spec, check100)
 {
-    FAIL();
+    EXPECT_EQ(largestPrimeFactor(100), 5);
+}
+
+TEST_F(Euler3Spec, check600851475143)
+{
+    EXPECT_EQ(largestPrimeFactor(600851475143), 6857);
 }
