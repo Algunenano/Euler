@@ -17,7 +17,12 @@ protected:
 
 };
 
-TEST_F(Euler2Spec, fail)
+TEST_F(Euler2Spec, upto100)
 {
-    FAIL();
+    EXPECT_EQ(fibEvenSum(100), 44);
+}
+
+TEST_F(Euler2Spec, upto4000000)
+{
+    EXPECT_EQ(fibEvenSum(4000000), 4613732);
 }
