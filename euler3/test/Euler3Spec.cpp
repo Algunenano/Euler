@@ -17,6 +17,11 @@ protected:
 
 };
 
+TEST_F(Euler3Spec, check2)
+{
+    EXPECT_EQ(largestPrimeFactor(2), 2);
+}
+
 TEST_F(Euler3Spec, check13)
 {
     EXPECT_EQ(largestPrimeFactor(13), 13);
