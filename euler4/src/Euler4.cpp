@@ -28,16 +28,16 @@ bool isPalindrome (ull _num)
 }
 
 ull largestPalindromeProduct (ull _digits)
-{
+{    
     ull bottom = std::pow (10, _digits - 1);
     ull top = bottom * 10 - 1;
     ull result = 0;
     
-    for (ull big = top; big != bottom; big--)
+    for (ull big = (top - (top % 11)); big >= bottom; big -= 11) //All palindromes are 11*sth
     {
-        if (big * (big - 1) < result) break;
+        if (big * top < result) break;
         
-        for (ull low = big; low != bottom; low--) {
+        for (ull low = top; low != bottom; low--) {
             ull aux = big * low;
             if (aux < result) break;
             if (isPalindrome(aux)) {
