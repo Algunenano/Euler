@@ -17,7 +17,22 @@ protected:
 
 };
 
-TEST_F(Euler5Spec, fail)
+TEST_F(Euler5Spec, smallest3)
 {
-    FAIL();
+    EXPECT_EQ(smallestMultiple(3), 6);
+}
+
+TEST_F(Euler5Spec, smallest4)
+{
+    EXPECT_EQ(smallestMultiple(4), 12);
+}
+
+TEST_F(Euler5Spec, smallest10)
+{
+    EXPECT_EQ(smallestMultiple(10), 2520);
+}
+
+TEST_F(Euler5Spec, smallest20)
+{
+    EXPECT_EQ(smallestMultiple(20), 232792560);
 }
