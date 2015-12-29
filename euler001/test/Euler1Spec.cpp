@@ -24,5 +24,5 @@ TEST_F(Euler1Spec, Upto10)
 
 TEST_F(Euler1Spec, Upto1000)
 {
-    EXPECT_EQ(sumMultiples35(233168), 23);
+    EXPECT_EQ(sumMultiples35(1000), 233168);
 }
