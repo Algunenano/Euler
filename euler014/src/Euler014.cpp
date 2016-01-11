@@ -1,38 +1,42 @@
-#include <new>
-#include <iostream>
+#include <vector>
+#include <algorithm>
 
 #include "Euler014.h"
 
-ull individualChain (ull value)
+ull individualChain (ull value, std::vector<ull> &calculated)
 {
     if (value < 2)
     {
         return 0;
     }
     
-    if (value % 2 == 0)
+    if (value >= calculated.size())
     {
-        return 1+individualChain(value/2);
+        return 1 + individualChain((value % 2 ? value * 3 + 1 : value / 2), calculated);
     }
+    
+    if (calculated[value])
+    {
+        return calculated[value];
+    }
+    
 
-    return 1+individualChain(value * 3 +1);
+    ull result = 1 + individualChain((value % 2 ? value * 3 + 1 : value / 2), calculated);
+    calculated[value] = result;
+
+    return result;
 }
-
 
 ull longestChain (ull _limit)
 {
-    ull maxChain = 0;
-    ull maxNum = 0;
+    std::vector<ull> calculated (_limit + 1, 0);
     
     for (ull i = 1; i <= _limit; i++)
     {
-        ull myChain = individualChain(i);
-        if (myChain > maxChain)
-        {
-            maxChain = myChain;
-            maxNum = i;
-        }
+        individualChain(i, calculated);
     }
     
-    return maxNum;
+    auto max = std::max_element(calculated.begin(), calculated.end());
+    
+    return std::distance(calculated.begin(), max);
 }
