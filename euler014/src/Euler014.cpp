@@ -3,26 +3,26 @@
 
 #include "Euler014.h"
 
-ull individualChain (ull value, std::vector<ull> &calculated)
+ull individualChain (const ull _value, std::vector<ull> &_calculated, const ull _size)
 {
-    if (value < 2)
+    if (_value < 2)
     {
         return 0;
     }
     
-    if (value >= calculated.size())
+    if (_value >= _size)
     {
-        return 1 + individualChain((value % 2 ? value * 3 + 1 : value / 2), calculated);
+        return 1 + individualChain((_value % 2 ? _value * 3 + 1 : _value / 2), _calculated, _size);
     }
     
-    if (calculated[value])
+    if (_calculated[_value])
     {
-        return calculated[value];
+        return _calculated[_value];
     }
     
 
-    ull result = 1 + individualChain((value % 2 ? value * 3 + 1 : value / 2), calculated);
-    calculated[value] = result;
+    ull result = 1 + individualChain((_value % 2 ? _value * 3 + 1 : _value / 2), _calculated, _size);
+    _calculated[_value] = result;
 
     return result;
 }
@@ -33,7 +33,7 @@ ull longestChain (ull _limit)
     
     for (ull i = 1; i <= _limit; i++)
     {
-        individualChain(i, calculated);
+        individualChain(i, calculated, calculated.size());
     }
     
     auto max = std::max_element(calculated.begin(), calculated.end());
