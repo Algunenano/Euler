@@ -6,32 +6,13 @@ ull latticePaths (ull _gridSize)
 {
     if (_gridSize < 1) return 0;
     
-    std::vector<ull > grid ((_gridSize + 1) * (_gridSize + 1), 0);
+    ull solution = 1;
     
-    //Borders
-    ull i;
-    ull j = _gridSize * (_gridSize + 1);
-    
-    for (i = 0; i < _gridSize; i++)
+    for (ull i = _gridSize +1; i <= _gridSize * 2; i++)
     {
-        grid[j + i] = 1; 
+        solution *= i;
+        solution /= i - _gridSize;
     }
     
-    i = _gridSize;
-    for (j = 0; j < _gridSize; j++)
-    {
-        grid[j * (_gridSize +1) + i] = 1;
-    }
-    
-    //Grid
-    long long int row, column;
-    for (row = _gridSize - 1; row >= 0; row--)
-    {
-        for (column = _gridSize -1; column >= 0; column--)
-        {
-            grid[row * (_gridSize +1) + column] = grid [(row+1) * (_gridSize +1) + column] + grid [row * (_gridSize +1) + (column+1)];
-        }
-    }
-    
-    return grid[0];    
+    return solution;
 }
